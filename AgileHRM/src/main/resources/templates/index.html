@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "ISO-8859-1"/>
+      <title>View Employees</title>
+       <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      
+      <script>
+     
+         $(document).ready(function(){       
+        $("#employeesJson").append("<table ><thread><tr><th>Employee Id</th><th>Full Name </th></tr></thread><tbody>");
+            $.getJSON("http://localhost:8000/employees/", function(result){
+               $.each(result, function(key,value) {
+                  $("#employeesJson").append("<tr><td>"+value.id+"</td> <td> "+value.firstName+" "+value.lastName+" </td><td>"+value.address+"</td></tr>");
+               }); 
+            });
+         $("#employeesJson").append("</tbody></table>");
+         });
+        
+      </script>
+   </head>
+   
+	   
+	   
+   <body>
+      
+     
+      <div id = "employeesJson"> </div>
+     
+      
+   </body>
+</html>
